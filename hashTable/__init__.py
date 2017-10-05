@@ -1,3 +1,5 @@
+import json
+
 HASH_CONSTANT = 103
 
 
@@ -14,7 +16,6 @@ class HashTable:
             self.values[key].append(number)
         else:
             self.values[key] = [number]
-        print(self.values)
 
     def remove(self, number):
         key = hash(number)
@@ -22,7 +23,6 @@ class HashTable:
             self.values[key].pop(self.values[key].index(number))
             if not len(self.values[key]):
                 self.values.pop(key)
-        print(self.values)
 
     def find(self, number):
         key = hash(number)
@@ -31,13 +31,17 @@ class HashTable:
         else:
             raise ValueError('Could not find value.')
 
+    def __str__(self):
+        return json.dumps(self.values)
 
-hashTable = HashTable()
 
-hashTable.add(5)
-hashTable.add(108)
-hashTable.add(6)
-hashTable.remove(6)
+if __name__ == '__main__':
+    hashTable = HashTable()
+
+    hashTable.add(5)
+    hashTable.add(108)
+    hashTable.add(6)
+    hashTable.remove(6)
 
 
 
