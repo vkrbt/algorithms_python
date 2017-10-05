@@ -1,29 +1,30 @@
-def binarySearch(sortedArray, item):
-    minIndex = 0
-    maxIndex = len(sortedArray) - 1
-    while minIndex <= maxIndex:
-        middle = (maxIndex + minIndex) // 2
-        current = sortedArray[middle]
+def binary_search(sorted_array, item):
+    min_index = 0
+    max_index = len(sorted_array) - 1
+    while min_index <= max_index:
+        middle = (max_index + min_index) // 2
+        current = sorted_array[middle]
         if current == item:
             return middle
         if item < current:
-            maxIndex = middle - 1
+            max_index = middle - 1
         if item > current:
-            minIndex = middle + 1
+            min_index = middle + 1
     return -1
 
-def interpolationSort(sortedArray, item):
-    minIndex = 0
-    maxIndex = len(sortedArray) - 1
-    while (minIndex <= maxIndex and
-        sortedArray[minIndex] <= item <= sortedArray[maxIndex]):
-        middle = minIndex + ((item - sortedArray[minIndex]) * (maxIndex - minIndex))\
-                        // (sortedArray[maxIndex] - sortedArray[minIndex])
-        current = sortedArray[middle]
+
+def interpolation_sort(sorted_array, item):
+    min_index = 0
+    max_index = len(sorted_array) - 1
+    while (min_index <= max_index and
+            sorted_array[min_index] <= item <= sorted_array[max_index]):
+        middle = min_index + ((item - sorted_array[min_index]) * (max_index - min_index))\
+                        // (sorted_array[max_index] - sorted_array[min_index])
+        current = sorted_array[middle]
         if current == item:
             return middle
         if item < current:
-            maxIndex = middle - 1
+            max_index = middle - 1
         if item > current:
-            minIndex = middle + 1
+            min_index = middle + 1
     return -1

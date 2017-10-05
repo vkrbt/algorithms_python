@@ -1,17 +1,33 @@
-import search, helpers, timeit
+import search
+import helpers
 
-TIMES = 10000000
-NUM_TO_FIND = 31104
+ARR_LENGTH = 10000000
+NUM_TO_FIND = 8*6*1*9*9*8
+TIMES = 10000
 
-arr = helpers.genSortedArr(TIMES, 0, TIMES)
+arr = helpers.gen_sorted_arr(ARR_LENGTH, 0, TIMES)
 
-binTime = timeit.timeit()
-binIndex = search.binarySearch(arr, NUM_TO_FIND)
-binTime = timeit.timeit() - binTime
+# Binary search time executing.
 
-interTime = timeit.timeit()
-interIndex = search.interpolationSort(arr, NUM_TO_FIND)
-interTime = timeit.timeit() - interTime
+times = TIMES
+binTime = helpers.time()
+
+while times:
+    search.binary_search(arr, NUM_TO_FIND)
+    times -= 1
+
+binTime = helpers.time() - binTime
+
+# Interpolation search time executing.
+
+times = TIMES
+interTime = helpers.time()
+
+while times:
+    interIndex = search.interpolation_sort(arr, NUM_TO_FIND)
+    times -= 1
+
+interTime = helpers.time() - interTime
 
 print('Binary search time:', binTime)
 print('Interpolation search time:', interTime)

@@ -1,7 +1,7 @@
 HASH_CONSTANT = 103
 
 
-def hash(value):
+def hash_function(value):
     return value % HASH_CONSTANT
 
 
@@ -9,7 +9,7 @@ class HashTable:
     values = {}
 
     def add(self, number):
-        key = hash(number)
+        key = hash_function(number)
         if key in self.values.keys():
             self.values[key].append(number)
         else:
