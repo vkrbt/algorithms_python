@@ -1,4 +1,4 @@
-import search
+from search import binary_search, interpolation_search
 import helpers
 
 ARR_LENGTH = 10000000
@@ -13,7 +13,7 @@ times = TIMES
 binTime = helpers.time()
 
 while times:
-    search.binary_search(arr, NUM_TO_FIND)
+    binary_search(arr, NUM_TO_FIND)
     times -= 1
 
 binTime = helpers.time() - binTime
@@ -24,7 +24,7 @@ times = TIMES
 interTime = helpers.time()
 
 while times:
-    interIndex = search.interpolation_sort(arr, NUM_TO_FIND)
+    interIndex = interpolation_search(arr, NUM_TO_FIND)
     times -= 1
 
 interTime = helpers.time() - interTime

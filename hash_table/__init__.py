@@ -1,4 +1,5 @@
 import json
+from random import randint
 
 HASH_CONSTANT = 103
 
@@ -32,16 +33,16 @@ class HashTable:
             raise ValueError('Could not find value.')
 
     def __str__(self):
-        return json.dumps(self.values)
+        keys = sorted(self.values.keys())
+        return ''.join([str(key) + ': ' + json.dumps(self.values[key]) + '\n' for key in keys])
 
 
 if __name__ == '__main__':
     hashTable = HashTable()
 
-    hashTable.add(5)
-    hashTable.add(108)
-    hashTable.add(6)
-    hashTable.remove(6)
+    for i in range(0, 1000):
+        hashTable.add(randint(0, 10000000000))
+    print(hashTable)
 
 
 

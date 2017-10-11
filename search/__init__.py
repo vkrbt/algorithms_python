@@ -13,7 +13,7 @@ def binary_search(sorted_array, item):
     return -1
 
 
-def interpolation_sort(sorted_array, item):
+def interpolation_search(sorted_array, item):
     min_index = 0
     max_index = len(sorted_array) - 1
     while (min_index <= max_index and
