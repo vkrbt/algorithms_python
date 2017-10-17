@@ -1,41 +1,38 @@
-class Node:
+class TreeNode:
     def __init__(self, value):
-        self.value = value
-        self.left = None
-        self.right = None
+        self.left = None;
+        self.right = None;
+        self.data = value;
 
+class Tree:
+    def __init__(self):
+        self.root = None;
 
-class BinaryTree:
-    def __init__(self, value):
-        self.root = value if isinstance(value, Node) else None
-
-    def add(self, value):
-        node = Node(value)
-        if not self.root:
-            self.root = node
+    def addNode(self, node, value):
+        if(node==None):
+            self.root = TreeNode(value);
         else:
-            current = self.root
-            while True:
-                if value == current.value:
-                    break
-                if value < current.value:
-                    if not current.left:
-                        current.left = node
-                        break
-                    else:
-                        current = current.left
+            if(value<node.data):
+                if(node.left==None):
+                    node.left = TreeNode(value)
                 else:
-                    if not current.right:
-                        current.right = node
-                        break
-                    else:
-                        current = current.right
-        return node.value
+                    self.addNode(node.left, value);
+            else:
+                if(node.right==None):
+                    node.right = TreeNode(value)
+                else:
+                    self.addNode(node.right, value);
 
-    def __contains__(self, item):
-        found = False
-        current = self.root
-        while not found and current:
-            if item == current.value:
-                found = True
-                break
+    def printInorder(self, node):
+        if(node!=None):
+            self.printInorder(node.left)
+            print(node.data)
+            self.printInorder(node.right)
+
+def main():
+    testTree = Tree()
+    testTree.addNode(testTree.root, 200)
+    testTree.addNode(testTree.root, 300)
+    testTree.addNode(testTree.root, 100)
+    testTree.addNode(testTree.root, 30)
+    testTree.printInorder(testTree.root)

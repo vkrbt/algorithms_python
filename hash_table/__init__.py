@@ -19,9 +19,6 @@ class HashTable:
             self.values[key] = [number]
 
     def remove(self, number):
-        self.__del__(number)
-
-    def __del__(self, number):
         key = hash(number)
         if key in self.values.keys() and number in self.values[key]:
             self.values[key].pop(self.values[key].index(number))
@@ -46,6 +43,7 @@ if __name__ == '__main__':
     for i in range(0, 1000):
         hashTable.add(randint(0, 10000000000))
     print(hashTable)
+
 
 
 
