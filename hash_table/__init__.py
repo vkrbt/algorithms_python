@@ -41,7 +41,7 @@ if __name__ == '__main__':
     hashTable = HashTable()
 
     for i in range(0, 1000):
-        hashTable.add(randint(0, 10000000000))
+        hashTable.add(randint(0, 1000000))
     print(hashTable)
 
 
