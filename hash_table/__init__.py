@@ -25,10 +25,11 @@ class HashTable:
             self.values[key].pop(self.values[key].index(number))
             if not len(self.values[key]):
                 self.values.pop(key)
+        else:
+            raise ValueError('Item is not exist.')
 
     def find(self, number):
         key = hash_function(number)
-        print(key)
         if key in self.values.keys() and number in self.values[key]:
             return self.values[key][self.values[key].index(number)]
         else:
@@ -44,10 +45,15 @@ if __name__ == '__main__':
 
     for i in range(0, 1000):
         hashTable.add(randint(0, 100000))
+    hashTable.add(350)
+    print(hashTable.find(350))
+    hashTable.remove(350)
+
     try:
         print(hashTable.find(350))
-    except:
+    except ValueError:
         print('Could not find value.')
+
     print(hashTable)
 
 
