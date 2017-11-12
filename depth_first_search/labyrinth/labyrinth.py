@@ -1,6 +1,6 @@
 from random import randint
 
-SIZE = 10
+SIZE = 20
 
 class Cell:
     def __init__(self, column, row):
@@ -16,23 +16,24 @@ class Cell:
         self.visited = False
 
     def __str__(self):
-        return 'column: ' + str(self.column) + ', row: ' + str(self.row) + ', visited: ' + str(self.visited)
+        return ('column: ' + str(self.column) + ', row: ' + str(self.row) + ', visited: ' + str(self.visited) + '\n'+
+        '↑'+str(self.top)+' →'+str(self.right)+' ↓'+str(self.bottom)+' ←'+str(self.left))
 
-def index(column, row):
-    if column < 0 or row < 0 or column > (SIZE - 1) or row > (SIZE - 1):
+def index(column, row, size):
+    if column < 0 or row < 0 or column > (size - 1) or row > (size - 1):
         return None
-    return row + column * SIZE
+    return row + column * size
 
-def nextNeighbour(columns, currentCell):
+def nextNeighbour(columns, currentCell, size):
     column = currentCell.column
     row = currentCell.row
 
     neighbours = []
 
-    topIndex = index(column-1, row)
-    rightIndex = index(column, row+1)
-    bottomIndex = index(column+1, row)
-    leftIndex = index(column, row-1)
+    topIndex = index(column-1, row, size)
+    rightIndex = index(column, row+1, size)
+    bottomIndex = index(column+1, row, size)
+    leftIndex = index(column, row-1, size)
 
     top = columns[topIndex] if topIndex else None
     right = columns[rightIndex] if rightIndex else None
@@ -53,7 +54,6 @@ def nextNeighbour(columns, currentCell):
         return None
 
 
-
 def removeWalls(currentCell, nextCell):
     x = currentCell.column - nextCell.column
     y = currentCell.row - nextCell.row
@@ -71,6 +71,7 @@ def removeWalls(currentCell, nextCell):
         nextCell.top = False
         currentCell.bottom = False
 
+
 def hasUnvisited(grid):
     for cell in grid:
         if not cell.visited:
@@ -78,17 +79,17 @@ def hasUnvisited(grid):
     return False
 
 
-def generate():
+def generate(size=SIZE):
     grid = []
-    for i in range(SIZE):
-        for j in range(SIZE):
-            grid.append(Cell(i, j))
+    for column in range(size):
+        for row in range(size):
+            grid.append(Cell(column, row))
 
     currentCell = grid[0]
     stack = []
 
     while hasUnvisited(grid):
-        nextCell = nextNeighbour(grid, currentCell)
+        nextCell = nextNeighbour(grid, currentCell, size)
         if nextCell:
             stack.append(currentCell)
             removeWalls(currentCell, nextCell)
@@ -97,5 +98,8 @@ def generate():
             currentCell = nextCell
         elif len(stack):
             currentCell = stack.pop()
+
+    for cell in grid:
+        cell.visited = False
 
     return grid
