@@ -73,7 +73,6 @@ def removeWalls(currentCell, nextCell):
 
 def hasUnvisited(grid):
     for cell in grid:
-        print(cell)
         if not cell.visited:
             return True
     return False
