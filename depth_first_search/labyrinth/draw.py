@@ -42,7 +42,7 @@ def draw(labyrinth, size):
     cellHeight = HEIGHT // size
 
     for pos in range(len(labyrinth)):
-        drawCell(cellHeight, cellWidth, labyrinth[pos], draw, pos)
+        drawCell(cellHeight, cellWidth, labyrinth[pos], draw)
     image.show()
 
 
