@@ -1,20 +1,20 @@
-def degree_of_vertex(row):
-    return sum(row)
-
-def get_vertex(row):
-    return row.index(1)
-
 def find_cycle(graph):
     stack = []
     stack.append(0)
     res = []
     while stack:
         current = stack[-1]
-        if degree_of_vertex(graph[current]) == 0:
-            stack.pop()
-            res.append(current)
+        if sum(graph[current]) == 0:
+            res.append(stack.pop())
         else:
-            vertex = get_vertex(graph[current])
-            graph[vertex][current] = graph[current][vertex] = 0
+            vertex = graph[current].index(1)
+            graph[vertex][current] = 0
+            graph[current][vertex] = 0
             stack.append(vertex)
     return res
+
+def is_euler(graph):
+    for row in graph:
+        if (sum(row) % 2) != 0:
+            return False
+    return True
