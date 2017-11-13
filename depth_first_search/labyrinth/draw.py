@@ -45,12 +45,13 @@ def draw(labyrinth, size):
         drawCell(cellHeight, cellWidth, labyrinth[pos], draw, pos)
     image.show()
 
-def drawSolution(labyrinth, solution, size):
-    image = Image.new("RGBA", (WIDTH + 1, HEIGHT + 1), (51, 51, 51, 0))
+
+def drawSolution(labyrinth, solution, graphSize, imageSize=WIDTH):
+    image = Image.new("RGBA", (imageSize + 1, imageSize + 1), (51, 51, 51, 0))
     draw = ImageDraw.Draw(image)
 
-    cellWidth = WIDTH // size
-    cellHeight = HEIGHT // size
+    cellWidth = imageSize // graphSize
+    cellHeight = imageSize // graphSize
 
     for cell in labyrinth:
         drawCell(cellHeight, cellWidth, cell, draw, solution)

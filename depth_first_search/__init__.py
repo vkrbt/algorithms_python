@@ -8,5 +8,5 @@ if __name__ == '__main__':
     labyrinth = generate(SIZE)
     solution = search(labyrinth, SIZE)
 
-    drawSolution(labyrinth, solution, SIZE)
+    drawSolution(labyrinth, solution, SIZE, 200)
 
