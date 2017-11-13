@@ -1,4 +1,4 @@
-from depth_first_search.labyrinth.labyrinth import hasUnvisited, index
+from labyrinth.labyrinth import hasUnvisited, index
 
 def nextNeighbour(columns, currentCell, size):
     column = currentCell.column

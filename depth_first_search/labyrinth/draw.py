@@ -35,7 +35,7 @@ def drawCell(cellHeight, cellWidth, cell, draw, solution = [], color=(255, 128, 
             fill=(255, 255, 255, 255))
 
 def draw(labyrinth, size):
-    image = Image.new("RGBA", (WIDTH+1, HEIGHT+1), (51, 51, 51, 0))
+    image = Image.new("RGBA", (WIDTH+1, HEIGHT+1), (51, 51, 51, 200))
     draw = ImageDraw.Draw(image)
 
     cellWidth = WIDTH // size
@@ -47,7 +47,7 @@ def draw(labyrinth, size):
 
 
 def drawSolution(labyrinth, solution, graphSize, imageSize=WIDTH):
-    image = Image.new("RGBA", (imageSize + 1, imageSize + 1), (51, 51, 51, 0))
+    image = Image.new("RGBA", (imageSize + 1, imageSize + 1), (51, 51, 51, 200))
     draw = ImageDraw.Draw(image)
 
     cellWidth = imageSize // graphSize
