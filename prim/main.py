@@ -1,6 +1,5 @@
 from math import inf as _
-from kruskal import kruskal
-
+from prim import prim
 
 graph = [
     [0, 7, _, 5, _, _, _],
@@ -13,4 +12,4 @@ graph = [
 ]
 
 if __name__ == '__main__':
-    print(kruskal(graph))
+    print(prim(graph))
