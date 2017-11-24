@@ -2,7 +2,7 @@ from labyrinth.labyrinth import generate
 from labyrinth.draw import draw, drawSolution
 from search.search import search
 
-SIZE = 10
+SIZE = 40
 
 if __name__ == '__main__':
     labyrinth = generate(SIZE)
