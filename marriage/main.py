@@ -1,18 +1,8 @@
-from marriage import marriage, Preferences
+from marriage import marriage
 
-men = {
-    'a': Preferences('a', ['A', 'B', 'C']),
-    'b': Preferences('b', ['C', 'A', 'B']),
-    'c': Preferences('c', ['C', 'B', 'A']),
-}
+men = [[0, 1, 2], [2, 0, 1], [2, 1, 0]]
 
-women = {
-    'A': Preferences('A', ['c', 'a', 'b']),
-    'B': Preferences('B', ['b', 'a', 'c']),
-    'C': Preferences('C', ['a', 'c', 'b']),
-}
+women = [[2, 1, 0], [1, 0, 2], [0, 2, 1]]
 
 if __name__ == '__main__':
-    for pair in marriage(men, women).values():
-        print(pair)
-
+    print(marriage(men, women))
