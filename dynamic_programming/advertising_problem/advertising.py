@@ -4,7 +4,7 @@ def find_solution(positions, costs, min_len):
   for i in range(1, len(positions)):
     max_nearest = get_nearest_pos(positions, i, min_len)
     new_cost = costs[i] + solution[max_nearest + 1]
-    
+    print(max_nearest)
     if new_cost > solution[i]:
       solution.append(new_cost)
       prev_positions = solution_positions[max_nearest + 1]
@@ -18,9 +18,8 @@ def find_solution(positions, costs, min_len):
 
 def get_nearest_pos(positions, pos, min_len):
   current = positions[pos]
-  while  pos > 0:
-    if current - positions[pos] > min_len:
-      print(pos)
-      return pos
+  while current - positions[pos] <= min_len and pos > 0:
     pos = pos - 1
+  if current - positions[pos] > min_len:
+    return pos
   return -1
