@@ -29,9 +29,7 @@ def greedy(graph):
         weight += next_wight
         path.append(next_pos)
     weight += graph[0][path[-1]]
-    print(weight)
-    print(get_path_weight(graph, path))
-    return path, weight
+    return (len(graph) - 1, path, weight)
 
 
 def revese_path(path, pos1, pos2):
@@ -41,10 +39,32 @@ def revese_path(path, pos1, pos2):
 
 
 def opt2(graph, path, weight):
-    for i in range(1, len(path) - 3):
-        for j in range(i + 2, len(path)):
+    iterations = 0
+
+    for i in range(1, len(path) - 2):
+        for j in range(i + 1, len(path)):
+            iterations += 1
             reversed_path = revese_path(path, i, j)
             reversed_path_weight = get_path_weight(graph, reversed_path)
             if reversed_path_weight < weight:
-                path, weight = opt2(graph, reversed_path, reversed_path_weight)
-    return path, weight
+                path, weight = reversed_path, reversed_path_weight
+                i, j = 1, 2
+    return iterations, path, weight
+
+
+def opt3(graph, path, weight):
+    iterations = 0
+
+    for i in range(1, len(path) - 1):
+        for j in range(1, len(path)):
+            iterations += 1
+            if i == j:
+                continue
+            new_path = path[:]
+            new_path[i], new_path[j] = new_path[j], new_path[i]
+            new_path_weight = get_path_weight(graph, new_path)
+            if (new_path_weight < weight):
+                path, weight = new_path, new_path_weight
+                i, j = 1, 1
+
+    return iterations, path, weight

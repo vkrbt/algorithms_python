@@ -1,9 +1,11 @@
 from random import randint
-from solution import greedy, opt2
+from solution import greedy, opt2, opt3
+
 
 def print_graph(graph):
     for row in graph:
         print(row)
+
 
 def generate_full_graph(size):
     graph = [[0] * size for i in range(size)]
@@ -20,6 +22,7 @@ def generate_full_graph(size):
 if __name__ == '__main__':
     graph = generate_full_graph(10)
     print_graph(graph)
-    path, weight = greedy(graph)
-    print((path, weight))
+    iteration, path, weight = greedy(graph)
+    print((iteration, path, weight))
     print(opt2(graph, path, weight))
+    print(opt3(graph, path, weight))
