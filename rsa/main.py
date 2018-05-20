@@ -1,19 +1,27 @@
-from rsa import get_private_key, get_public_key, encode, decode
+from rsa import get_private_key, hack, rsa, rsa_string
 
 
-p = 19
-q = 23
+p = 67
+q = 47
 
-message = 15
+message = 19
 
-e = 43
+message_string = 'привет андрей';
 
-public_key = (e, 19*23)
+e = 5
 
+public_key = (e, p*q)
 
-if __name__ == '__init__':
-  private_key = get_private_key(public_key)
-  encoded_message = encode(message, public_key)
-  decoded_message = decode(encoded_message, private_key)
-
+if __name__ == '__main__':
+  private_key = get_private_key(e, p, q)
+  print(public_key, private_key)
+  encoded_message = rsa(message, public_key)
+  decoded_message = rsa(encoded_message, private_key)
   print('good!' if decoded_message is message else 'bad:(' )
+
+  encoded_message = rsa_string(message_string, public_key)
+  decoded_message = rsa_string(encoded_message, private_key, False)
+  print(encoded_message, decoded_message)
+  print('good!' if decoded_message == message_string else 'bad:(' )
+
+  print('hacked key:', hack(public_key), private_key)
